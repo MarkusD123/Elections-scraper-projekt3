@@ -6,3 +6,4 @@ urllib3==2.0.3
 setuptools==57.0.0
 beautifulsoup4==4.12.2
 soupsieve==2.4.1
+requests==2.31.0
