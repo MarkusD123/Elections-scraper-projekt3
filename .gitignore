@@ -1,0 +1,4 @@
+# ignore folder named myenvi #
+myenvi/
+# ignore folder .idea #
+.idea/
