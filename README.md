@@ -31,13 +31,13 @@ python projekt_3.py 'https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnum
 + 'rozdelene_html' - z hlavnej url adresy uzemneho celku 'main_url' vyextrahuje vsetky data, 
 z ktoreho ziskam do csv suboru cisla (do listu 'cislo_list') a nazvy (do listu 'obec_list') vsetkych obci daneho uzemneho celku (a takisto pomocny list 'http_adresy' adries vsetkych obci daneho uzemneho celku)
 ___
-+ 'rozdelene_html_hlavicka' - z http adresy ulozenej pod 'http_hlavicka' (co je adresa pre Alojzov) ziskam pre csv subor zahlavie (prvy riadok),
++ 'rozdelene_html_hlavicka' - z listu 'http adresy[0]' (co je adresa pre Alojzov) ulozenej pod 'http_hlavicka' ziskam pre csv subor zahlavie (prvy riadok),
 a to najprv do listu 'hlavicka' a nasledne zapis do csv suboru,
 ___
 + pocet vsech obci - pomocou dlzky len(vsechny cisla) - co je list vyextrahovanych data z 'rozdelene_html' ako 'rozdelene_html.find_all("td", {"class": "cislo"})'
 Pocet vsech obci potom definuje i pocet riadkov v csv subory (okrem hlavicky)
 ___
-+ 'rozdelene_html_obec' - z listu http adries jednotlivych obci 'http_adresy1' vyextrahovanie dat ako su 'Voliči v seznamu', 'Odevzdané obálky', 'Platné hlasy', a hlasy pre jednotlive politicke strany
++ 'rozdelene_html_obec' - z listu http adries jednotlivych obci 'http_adresy' vyextrahovanie dat ako su 'Voliči v seznamu', 'Odevzdané obálky', 'Platné hlasy', a hlasy pre jednotlive politicke strany
 
 ## UKAZKA PRIEBEHU:  
 
