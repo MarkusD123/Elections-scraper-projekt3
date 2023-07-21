@@ -29,7 +29,7 @@ hlavicka = []
 hlavicka.append(rozdelene_html.find('th', {'id': 't1sb1'}).get_text())  # zisk v hlavicke 'cislo'
 hlavicka.append(rozdelene_html.find('th', {'id': 't1sb2'}).get_text())  # zisk v hlavicke 'nazev'
 # Zisk v hlavicke vsetkych ostatnych kolon cez adresu obce napr. Alojzov
-http_hlavicka = 'https://volby.cz/pls/ps2017nss/ps311?XJAZYK=CZ&XKRAJ=12&XOBEC=506761&XVYBER=7103&xf=1'
+http_hlavicka = http_adresy[0]
 odpoved_hlavicka = requests.get(http_hlavicka)
 rozdelene_html_hlavicka = bs4.BeautifulSoup(odpoved_hlavicka.text, features='html.parser')
 hlavicka.append(rozdelene_html_hlavicka.find('th', {'id': 'sa2'}).get_text())
@@ -39,8 +39,9 @@ hlavicka_part1 = rozdelene_html_hlavicka.find_all('td', {'headers': 't1sa1 t1sb2
 hlavicka_part2 = rozdelene_html_hlavicka.find_all('td', {'headers': 't2sa1 t2sb2'})
 for a in hlavicka_part1:
     hlavicka.append(a.get_text())
-for a in hlavicka_part2[:-1]:
-    hlavicka.append(a.get_text())
+for a in hlavicka_part2:
+    if a.get_text() != '-':
+        hlavicka.append(a.get_text())
 # nasledny zapis hlavicky z listu do csv suboru:
 
 with open(csv_file, encoding='utf-8', newline='', mode="w") as vysledny_soubor_csv:
@@ -70,8 +71,9 @@ for i in range(0, x): #vyextrahovanie do listu a nasledny zapis kazdeho riadku d
     strany_obec_part2 = rozdelene_html_obec.find_all('td', {'headers': 't2sa2 t2sb3'}) # hlasy pre jednotlive politicke strany cast2
     for a in strany_obec_part1:
         row_obec.append(a.get_text())
-    for a in strany_obec_part2[:-1]:
-        row_obec.append(a.get_text())
+    for a in strany_obec_part2:
+        if a.get_text() != '-':
+            row_obec.append(a.get_text())
     # zapis dat ako su cislo, nazov, ... pre kazdu obec z listu row_obec do csv suboru
     with open(csv_file, encoding='utf-8', newline='', mode="a") as vysledny_soubor_csv:
         zapisovac = csv.writer(vysledny_soubor_csv)
